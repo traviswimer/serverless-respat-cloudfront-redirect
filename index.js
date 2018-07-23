@@ -1,13 +1,12 @@
 const redirectBucket = require('./resources/redirectBucket');
+const redirectCloudfront = require('./resources/redirectCloudfront');
 
 module.exports = function serverlessRespatCloudfrontRedirect({config, serverless}) {
-	let {
-		prefix,
-		pattern_name = "CloudfrontRedirect",
-	} = config;
+	config.pattern_name = config.pattern_name || "CloudfrontRedirect";
 
 	let resources = {
-		[`${pattern_name}RedirectBucket`]: redirectBucket({prefix, pattern_name, bucket_name})
+		[`${config.pattern_name}RedirectBucket`]: redirectBucket(config),
+		[`${config.pattern_name}RedirectCloudfront`]: redirectCloudfront(config)
 	};
 
 	return {
