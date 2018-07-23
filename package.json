@@ -1,6 +1,6 @@
 {
   "name": "serverless-respat-cloudfront-redirect",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Resource pattern to redirect requests at a certain domain.",
   "main": "index.js",
   "scripts": {
