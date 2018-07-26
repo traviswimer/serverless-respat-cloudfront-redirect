@@ -6,6 +6,15 @@
   "scripts": {
     "test": "cd ./test; sls package; cd ../; jest"
   },
+  "keywords": [
+    "serverless",
+    "respat",
+    "cloudfront",
+    "aws",
+    "redirect"
+    "www",
+    "non-www"
+  ],
   "author": "Travis Wimer",
   "license": "MIT",
   "devDependencies": {
