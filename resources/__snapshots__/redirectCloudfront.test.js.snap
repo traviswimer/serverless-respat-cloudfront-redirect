@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`redirectCloudfront() generates distribution 1`] = `
+Object {
+  "DependsOn": Array [
+    "ThePatternNameRedirectBucket",
+  ],
+  "Properties": Object {
+    "DistributionConfig": Object {
+      "Aliases": Array [
+        "TheRedirectFrom",
+      ],
+      "Comment": "Cloudfront Distribution pointing to 'TheRedirectFrom' S3 redirect bucket",
+      "DefaultCacheBehavior": Object {
+        "AllowedMethods": Array [
+          "GET",
+          "HEAD",
+        ],
+        "Compress": true,
+        "ForwardedValues": Object {
+          "Cookies": Object {
+            "Forward": "all",
+          },
+          "QueryString": true,
+        },
+        "TargetOriginId": "ThePatternNameCloudfrontRedirectBucketOrigin",
+        "ViewerProtocolPolicy": "redirect-to-https",
+      },
+      "Enabled": true,
+      "HttpVersion": "http2",
+      "IPV6Enabled": true,
+      "Origins": Array [
+        Object {
+          "CustomOriginConfig": Object {
+            "HTTPPort": "80",
+            "HTTPSPort": "443",
+            "OriginProtocolPolicy": "http-only",
+          },
+          "DomainName": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "TheRedirectFrom",
+                ".s3-website-TheRegion.amazonaws.com",
+              ],
+            ],
+          },
+          "Id": "ThePatternNameCloudfrontRedirectBucketOrigin",
+        },
+      ],
+      "PriceClass": "PriceClass_100",
+      "ViewerCertificate": Object {
+        "AcmCertificateArn": "TheCertArn",
+        "SslSupportMethod": "sni-only",
+      },
+    },
+  },
+  "Type": "AWS::CloudFront::Distribution",
+}
+`;

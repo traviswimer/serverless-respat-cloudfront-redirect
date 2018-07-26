@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`redirectBucket() generates bucket 1`] = `
+Object {
+  "Properties": Object {
+    "BucketName": "TheRedirectFrom",
+    "WebsiteConfiguration": Object {
+      "RedirectAllRequestsTo": Object {
+        "HostName": "TheRedirectTo",
+        "Protocol": "https",
+      },
+    },
+  },
+  "Type": "AWS::S3::Bucket",
+}
+`;
