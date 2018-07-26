@@ -17,7 +17,7 @@ Add patterns to the "custom" object in your serverless config file:
 		prefix: "${self:service}-${opt:stage}",
 		patterns: [
 			{
-				pattern_function: require("serverless-respat-cloudfront-redirect"),
+				pattern: require("serverless-respat-cloudfront-redirect"),
 				config: {
 					redirect_from: 'www.YOUR_DOMAIN',
 					redirect_to: 'YOUR_DOMAIN',
@@ -33,12 +33,12 @@ Add patterns to the "custom" object in your serverless config file:
 **You will need to setup Route53 (or other DNS service) to point to the Cloudfront resources created**
 
 ## Config options
-**pattern_name** - (string) A pattern name included in resource names. *DEFAULT: "CloudfrontRedirect"*
+**pattern_name** - (string, _default: "CloudfrontRedirect"_) A pattern name included in resource names.
 
-**redirect_from** - (string) The domain that you want to redirect to another domain.
+**redirect_from** (string, REQUIRED) - The domain that you want to redirect to another domain.
 
-**redirect_to** - (string) The domain that you want to redirect to.
+**redirect_to** (string, REQUIRED) - The domain that you want to redirect to.
 
-**region** - (string) The AWS region.
+**region** (string, REQUIRED) - The AWS region.
 
-**acm_certificate_arn** - (string) The ARN of the ACM certificate to use for HTTPS.
+**acm_certificate_arn** (string, REQUIRED) - The ARN of the ACM certificate to use for HTTPS.

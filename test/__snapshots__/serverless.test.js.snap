@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`serverless packaging generates correct cloudformation template 1`] = `
+Object {
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "The AWS CloudFormation template for this Serverless application",
+  "Outputs": Object {
+    "ServerlessDeploymentBucketName": Object {
+      "Value": Object {
+        "Ref": "ServerlessDeploymentBucket",
+      },
+    },
+  },
+  "Resources": Object {
+    "CloudfrontRedirectRedirectBucket": Object {
+      "Properties": Object {
+        "BucketName": "redirect-from.domain",
+        "WebsiteConfiguration": Object {
+          "RedirectAllRequestsTo": Object {
+            "HostName": "redirect-to.domain",
+            "Protocol": "https",
+          },
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+    },
+    "CloudfrontRedirectRedirectCloudfront": Object {
+      "DependsOn": Array [
+        "CloudfrontRedirectRedirectBucket",
+      ],
+      "Properties": Object {
+        "DistributionConfig": Object {
+          "Aliases": Array [
+            "redirect-from.domain",
+          ],
+          "Comment": "Cloudfront Distribution pointing to 'redirect-from.domain' S3 redirect bucket",
+          "DefaultCacheBehavior": Object {
+            "AllowedMethods": Array [
+              "GET",
+              "HEAD",
+            ],
+            "Compress": true,
+            "ForwardedValues": Object {
+              "Cookies": Object {
+                "Forward": "all",
+              },
+              "QueryString": true,
+            },
+            "TargetOriginId": "CloudfrontRedirectCloudfrontRedirectBucketOrigin",
+            "ViewerProtocolPolicy": "redirect-to-https",
+          },
+          "Enabled": true,
+          "HttpVersion": "http2",
+          "IPV6Enabled": true,
+          "Origins": Array [
+            Object {
+              "CustomOriginConfig": Object {
+                "HTTPPort": "80",
+                "HTTPSPort": "443",
+                "OriginProtocolPolicy": "http-only",
+              },
+              "DomainName": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "redirect-from.domain",
+                    ".s3-website-us-east-1.amazonaws.com",
+                  ],
+                ],
+              },
+              "Id": "CloudfrontRedirectCloudfrontRedirectBucketOrigin",
+            },
+          ],
+          "PriceClass": "PriceClass_100",
+          "ViewerCertificate": Object {
+            "AcmCertificateArn": "not:a:real:arn",
+            "SslSupportMethod": "sni-only",
+          },
+        },
+      },
+      "Type": "AWS::CloudFront::Distribution",
+    },
+    "ServerlessDeploymentBucket": Object {
+      "Type": "AWS::S3::Bucket",
+    },
+  },
+}
+`;
